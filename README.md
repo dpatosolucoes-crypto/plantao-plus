@@ -1,16 +1,43 @@
-# React + Vite
+# Plantão+
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dashboard hospitalar fictício desenvolvido em React para apoio visual à gestão de plantão.
 
-Currently, two official plugins are available:
+## Sobre o projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+O Plantão+ é uma interface front-end criada para simular um painel de acompanhamento hospitalar, exibindo informações como pacientes, leitos, classificação de risco, sinais vitais, medicações pendentes e alertas do plantão.
 
-## React Compiler
+Este projeto foi desenvolvido com foco em portfólio, utilizando dados fictícios e sem armazenar informações reais de pacientes.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Funcionalidades atuais
 
-## Expanding the ESLint configuration
+- Dashboard geral do plantão
+- Cards de resumo com indicadores principais
+- Mapa de leitos
+- Lista de pacientes fictícios
+- Classificação de risco por status
+- Alertas de medicação e pacientes críticos
+- Layout responsivo
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tecnologias utilizadas
+
+- React
+- Vite
+- JavaScript
+- CSS
+
+## Objetivo do projeto
+
+Demonstrar habilidades em desenvolvimento front-end, organização de componentes, criação de interfaces responsivas e construção de dashboards com dados dinâmicos.
+
+## Próximas melhorias
+
+- Formulário para cadastrar novos pacientes
+- Filtros por risco e status
+- Modal com detalhes do paciente
+- Salvamento no LocalStorage
+- Testes automatizados com Playwright
+- Deploy online
+
+## Aviso
+
+Este projeto é fictício e utiliza apenas dados simulados. Não deve ser usado para atendimento real, prontuário eletrônico ou tomada de decisão clínica.
