@@ -1,15 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddPatientForm from "./components/AddPatientForm";
 import BedCard from "./components/BedCard";
 import PatientTable from "./components/PatientTable";
 import SummaryCard from "./components/SummaryCard";
 import { patients as initialPatients } from "./data/patients";
 
+const STORAGE_KEY = "plantao-plus-patients";
+
 function App() {
-  const [patients, setPatients] = useState(initialPatients);
+  const [patients, setPatients] = useState(() => {
+    const savedPatients = localStorage.getItem(STORAGE_KEY);
+
+    if (savedPatients) {
+      return JSON.parse(savedPatients);
+    }
+
+    return initialPatients;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(patients));
+  }, [patients]);
 
   function handleAddPatient(newPatient) {
     setPatients([...patients, newPatient]);
+  }
+
+  function handleResetPatients() {
+    const confirmReset = window.confirm(
+      "Tem certeza que deseja restaurar os pacientes iniciais?"
+    );
+
+    if (confirmReset) {
+      setPatients(initialPatients);
+    }
   }
 
   const totalPatients = patients.length;
@@ -29,13 +53,20 @@ function App() {
   return (
     <main className="app">
       <header className="header">
-        <div>
+        <div className="header-content">
           <p className="eyebrow">Dashboard hospitalar</p>
           <h1>Plantão+</h1>
           <p className="subtitle">
             Painel de apoio para visualização rápida de pacientes, leitos e
             pendências do plantão.
           </p>
+
+          <div className="header-toolbar">
+            <button className="reset-button" onClick={handleResetPatients}>
+              Restaurar dados iniciais
+            </button>
+            <span>Remove os cadastros salvos neste navegador.</span>
+          </div>
         </div>
 
         <div className="shift-card">
