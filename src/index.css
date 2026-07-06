@@ -318,3 +318,87 @@ td {
     padding: 18px;
   }
 }
+
+.form-panel {
+  margin-bottom: 24px;
+}
+
+.patient-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full {
+  grid-column: span 2;
+}
+
+.form-group label {
+  color: #334155;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: #0f172a;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.submit-button {
+  align-self: end;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 12px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit-button:hover {
+  background: #1d4ed8;
+}
+
+@media (max-width: 1000px) {
+  .patient-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-group.full {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .patient-form {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.full {
+    grid-column: span 1;
+  }
+
+  .submit-button {
+    width: 100%;
+  }
+}

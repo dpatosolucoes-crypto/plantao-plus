@@ -1,9 +1,17 @@
+import { useState } from "react";
+import AddPatientForm from "./components/AddPatientForm";
 import BedCard from "./components/BedCard";
 import PatientTable from "./components/PatientTable";
 import SummaryCard from "./components/SummaryCard";
-import { patients } from "./data/patients";
+import { patients as initialPatients } from "./data/patients";
 
 function App() {
+  const [patients, setPatients] = useState(initialPatients);
+
+  function handleAddPatient(newPatient) {
+    setPatients([...patients, newPatient]);
+  }
+
   const totalPatients = patients.length;
 
   const criticalPatients = patients.filter(
@@ -12,8 +20,8 @@ function App() {
 
   const pendingMedications = patients.filter(
     (patient) =>
-      patient.medication.includes("pendente") ||
-      patient.medication.includes("atrasada")
+      patient.medication.toLowerCase().includes("pendente") ||
+      patient.medication.toLowerCase().includes("atrasada")
   ).length;
 
   const occupiedBeds = patients.length;
@@ -61,9 +69,11 @@ function App() {
         <SummaryCard
           title="Leitos ocupados"
           value={`${occupiedBeds}/8`}
-          description="50% da capacidade"
+          description="capacidade total do setor"
         />
       </section>
+
+      <AddPatientForm onAddPatient={handleAddPatient} />
 
       <section className="content-grid">
         <div className="panel">
@@ -84,19 +94,26 @@ function App() {
         <aside className="panel alerts-panel">
           <h2>Alertas do plantão</h2>
 
-          <div className="alert danger-alert">
-            <strong>Paciente crítico</strong>
-            <p>Maria Aparecida apresenta saturação abaixo de 90%.</p>
-          </div>
+          {criticalPatients > 0 && (
+            <div className="alert danger-alert">
+              <strong>Paciente crítico</strong>
+              <p>Existe paciente classificado como crítico no setor.</p>
+            </div>
+          )}
 
-          <div className="alert warning-alert">
-            <strong>Medicação atrasada</strong>
-            <p>Dipirona 1g do Leito 01 consta como atrasada.</p>
-          </div>
+          {pendingMedications > 0 && (
+            <div className="alert warning-alert">
+              <strong>Medicação pendente</strong>
+              <p>Há medicações pendentes ou atrasadas no plantão atual.</p>
+            </div>
+          )}
 
           <div className="alert info-alert">
-            <strong>Exame pendente</strong>
-            <p>Carlos Eduardo aguarda resultado de exames laboratoriais.</p>
+            <strong>Passagem de plantão</strong>
+            <p>
+              Revise pacientes em observação, exames e pendências antes da troca
+              de equipe.
+            </p>
           </div>
         </aside>
       </section>
