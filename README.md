@@ -18,6 +18,23 @@ Este projeto foi desenvolvido com foco em portfólio, utilizando dados fictício
 - Alertas de medicação e pacientes críticos
 - Layout responsivo
 
+## Testes automatizados
+
+O projeto possui testes end-to-end com Playwright, validando os principais fluxos da aplicação.
+
+### Cenários testados
+
+- Carregamento do dashboard principal
+- Exibição dos pacientes iniciais
+- Cadastro de novo paciente
+- Persistência dos dados após recarregar a página
+- Restauração dos dados iniciais
+
+### Rodar os testes
+
+```bash
+npx playwright test
+
 ## Tecnologias utilizadas
 
 - React
